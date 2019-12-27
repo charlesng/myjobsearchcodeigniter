@@ -24,7 +24,10 @@ class News extends Controller
 
     public function view($slug = NULL)
     {
-        log_message('info', 'News with ' . $slug . ' is visited');
+        $info = [
+            'slug' => $slug,
+        ];
+        log_message('info', 'News with {slug} is visited', $info);
         $model = new NewsModel();
 
         $data['news'] = $model->getNews($slug);
