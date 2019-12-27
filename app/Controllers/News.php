@@ -16,6 +16,7 @@ class News extends Controller
     public function index()
     {
         $this->cachePage($this->cacheTime);
+        log_message('info', 'News Index page is visited');
         $model = new NewsModel();
 
         $data = [
@@ -31,6 +32,10 @@ class News extends Controller
     public function view($slug = NULL)
     {
         $this->cachePage($this->cacheTime);
+        $info = [
+            'slug' => $slug,
+        ];
+        log_message('info', 'News with {slug} is visited', $info);
         $model = new NewsModel();
 
         $data['news'] = $model->getNews($slug);
@@ -48,6 +53,7 @@ class News extends Controller
 
     public function create()
     {
+        log_message('info', 'Create New Page is visited');
         helper('form');
         $model = new NewsModel();
 
