@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
 
@@ -32,7 +34,7 @@ class Logger extends BaseConfig
 	| your log files will fill up very fast.
 	|
 	*/
-	public $threshold = 3;
+	public $threshold = 9;
 
 	/*
 	|--------------------------------------------------------------------------
@@ -126,9 +128,9 @@ class Logger extends BaseConfig
 		],
 
 		/**
-		 * The ChromeLoggerHandler requires the use of the Chrome web browser
-		 * and the ChromeLogger extension. Uncomment this block to use it.
-		 */
+	 * The ChromeLoggerHandler requires the use of the Chrome web browser
+	 * and the ChromeLogger extension. Uncomment this block to use it.
+	 */
 		//      'CodeIgniter\Log\Handlers\ChromeLoggerHandler' => [
 		//          /*
 		//           * The log levels that this handler will handle.
