@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
 
@@ -54,7 +56,7 @@ class Cache extends BaseConfig
 	|	             of query parameters.
 	|
 	*/
-	public $cacheQueryString = false;
+	public $cacheQueryString = true;
 
 	/*
 	|--------------------------------------------------------------------------
