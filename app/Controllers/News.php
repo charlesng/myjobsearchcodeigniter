@@ -7,15 +7,8 @@ use CodeIgniter\Controller;
 
 class News extends Controller
 {
-    /**
-     * In second
-     * @var int
-     */
-    private $cacheTime = 10;
-
     public function index()
     {
-        $this->cachePage($this->cacheTime);
         $model = new NewsModel();
 
         $data = [
@@ -30,7 +23,6 @@ class News extends Controller
 
     public function view($slug = NULL)
     {
-        $this->cachePage($this->cacheTime);
         $model = new NewsModel();
 
         $data['news'] = $model->getNews($slug);
