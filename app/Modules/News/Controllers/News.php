@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controllers;
+namespace News\Controllers;
 
-use App\Models\NewsModel;
 use CodeIgniter\Controller;
+use News\Models\NewsModel;
 
 class News extends Controller
 {
@@ -25,7 +25,7 @@ class News extends Controller
         ];
 
         echo view('templates/header', $data);
-        echo view('news/overview', $data);
+        echo view('News\Views\overview', $data);
         echo view('templates/footer');
     }
 
@@ -47,7 +47,7 @@ class News extends Controller
         $data['title'] = $data['news']['title'];
 
         echo view('templates/header', $data);
-        echo view('news/view', $data);
+        echo view('News\Views\view', $data);
         echo view('templates/footer');
     }
 
@@ -62,7 +62,7 @@ class News extends Controller
             'body'  => 'required'
         ])) {
             echo view('templates/header', ['title' => 'Create a news item']);
-            echo view('news/create');
+            echo view('News\Views\create');
             echo view('templates/footer');
         } else {
             $model->save([
@@ -70,7 +70,7 @@ class News extends Controller
                 'slug'  => url_title($this->request->getVar('title')),
                 'body'  => $this->request->getVar('body'),
             ]);
-            echo view('news/success');
+            echo view('News\Views\success');
         }
     }
 }
