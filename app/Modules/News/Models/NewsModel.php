@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace News\Models;
 
 use CodeIgniter\Model;
 
