@@ -1,1 +1,5 @@
-News item created successfully.
+<?= $this->extend('app') ?>
+
+<?= $this->section('content') ?>
+<?= $msgNewsCreatedSuccess ?>
+<?= $this->endSection() ?>

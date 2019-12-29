@@ -22,11 +22,11 @@ class News extends Controller
         $data = [
             'news'  => $model->getNews(),
             'title' => 'News archive',
+            'locale' => $this->request->getLocale(),
+            'msgNoNews' => lang('News.msgNoNews'),
+            'msgNoNewsDetail' => lang('News.msgNoNewsDetail')
         ];
-
-        echo view('templates/header', $data);
-        echo view('News\Views\overview', $data);
-        echo view('templates/footer');
+        return view('News\Views\overview', $data);
     }
 
     public function view($slug = NULL)
@@ -46,9 +46,7 @@ class News extends Controller
 
         $data['title'] = $data['news']['title'];
 
-        echo view('templates/header', $data);
-        echo view('News\Views\view', $data);
-        echo view('templates/footer');
+        return view('News\Views\view', $data);
     }
 
     public function create()
@@ -60,17 +58,35 @@ class News extends Controller
         if (!$this->validate([
             'title' => 'required|min_length[3]|max_length[255]',
             'body'  => 'required'
+        ], [
+            'title' => [
+                'required' => lang('NewsError.TitleMissed')
+            ],
+            'body'  => [
+                'required' => lang('NewsError.BodyMissed')
+            ]
         ])) {
-            echo view('templates/header', ['title' => 'Create a news item']);
-            echo view('News\Views\create');
-            echo view('templates/footer');
+            $data = [
+                'title' => 'Create a news item',
+                'locale' => $this->request->getLocale(),
+                'createTitleLabel' => lang('News.createTitleLabel'),
+                'createTextLabel' => lang('News.createTextLabel')
+            ];
+            return  view('News\Views\create', $data);
         } else {
             $model->save([
                 'title' => $this->request->getVar('title'),
                 'slug'  => url_title($this->request->getVar('title')),
                 'body'  => $this->request->getVar('body'),
             ]);
-            echo view('News\Views\success');
+            $data = [
+                'title' => 'Created successfully',
+                'locale' => $this->request->getLocale(),
+                'createTitleLabel' => lang('News.createTitleLabel'),
+                'createTextLabel' => lang('News.createTextLabel'),
+                'msgNewsCreatedSuccess' => lang('News.msgNewsCreatedSuccess')
+            ];
+            return view('News\Views\success', $data);
         }
     }
 }

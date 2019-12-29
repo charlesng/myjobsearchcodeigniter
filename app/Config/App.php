@@ -90,7 +90,7 @@ class App extends BaseConfig
 	| found, the first locale will be used.
 	|
 	*/
-	public $supportedLocales = ['en'];
+	public $supportedLocales = ['en', 'de'];
 
 	/*
 	|--------------------------------------------------------------------------
@@ -266,5 +266,5 @@ class App extends BaseConfig
 	|   - http://www.html5rocks.com/en/tutorials/security/content-security-policy/
 	|   - http://www.w3.org/TR/CSP/
 	*/
-	public $CSPEnabled = false;
+	public $CSPEnabled = true;
 }

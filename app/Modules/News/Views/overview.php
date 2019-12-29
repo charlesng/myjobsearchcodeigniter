@@ -1,4 +1,6 @@
-<h2><?= $title ?></h2>
+<?= $this->extend('app') ?>
+
+<?= $this->section('content') ?>
 
 <?php if (!empty($news) && is_array($news)) : ?>
 
@@ -9,14 +11,15 @@
         <div class="main">
             <?= $news_item['body'] ?>
         </div>
-        <p><a href="<?= '/news/' . $news_item['slug'] ?>">View article</a></p>
+        <p><a href="<?= 'news/' . $news_item['slug'] ?>">View article</a></p>
 
     <?php endforeach; ?>
 
 <?php else : ?>
 
-    <h3>No News</h3>
+    <h3><?= $msgNoNews ?></h3>
 
-    <p>Unable to find any news for you.</p>
+    <p><?= $msgNoNewsDetail ?></p>
 
 <?php endif ?>
+<?= $this->endSection() ?>
