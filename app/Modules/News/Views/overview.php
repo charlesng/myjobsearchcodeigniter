@@ -1,4 +1,6 @@
-<h2><?= $title ?></h2>
+<?= $this->extend('app') ?>
+
+<?= $this->section('content') ?>
 
 <?php if (!empty($news) && is_array($news)) : ?>
 
@@ -20,3 +22,4 @@
     <p>Unable to find any news for you.</p>
 
 <?php endif ?>
+<?= $this->endSection() ?>

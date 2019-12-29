@@ -1,4 +1,6 @@
-<h2><?= esc($title); ?></h2>
+<?= $this->extend('app') ?>
+
+<?= $this->section('content') ?>
 
 <?= \Config\Services::validation()->listErrors(); ?>
 
@@ -13,3 +15,4 @@
     <input type="submit" name="submit" value="Create news item" />
 
 </form>
+<?= $this->endSection() ?>

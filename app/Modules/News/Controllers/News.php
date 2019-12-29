@@ -23,10 +23,7 @@ class News extends Controller
             'news'  => $model->getNews(),
             'title' => 'News archive',
         ];
-
-        echo view('templates/header', $data);
-        echo view('News\Views\overview', $data);
-        echo view('templates/footer');
+        return view('News\Views\overview', $data);
     }
 
     public function view($slug = NULL)
@@ -46,9 +43,7 @@ class News extends Controller
 
         $data['title'] = $data['news']['title'];
 
-        echo view('templates/header', $data);
-        echo view('News\Views\view', $data);
-        echo view('templates/footer');
+        return view('News\Views\view', $data);
     }
 
     public function create()
@@ -61,16 +56,16 @@ class News extends Controller
             'title' => 'required|min_length[3]|max_length[255]',
             'body'  => 'required'
         ])) {
-            echo view('templates/header', ['title' => 'Create a news item']);
-            echo view('News\Views\create');
-            echo view('templates/footer');
+            $data = ['title' => 'Create a news item'];
+            return  view('News\Views\create', $data);
         } else {
             $model->save([
                 'title' => $this->request->getVar('title'),
                 'slug'  => url_title($this->request->getVar('title')),
                 'body'  => $this->request->getVar('body'),
             ]);
-            echo view('News\Views\success');
+            $data = ['title' => 'Created successfully'];
+            return view('News\Views\success', $data);
         }
     }
 }
