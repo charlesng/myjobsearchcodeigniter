@@ -6,12 +6,12 @@
 
     <?php foreach ($news as $news_item) : ?>
 
-        <h3><?= $news_item['title'] ?></h3>
+        <h3><?= $news_item->title ?></h3>
 
         <div class="main">
-            <?= $news_item['body'] ?>
+            <?= $news_item->body ?>
         </div>
-        <p><a href="<?= 'news/' . $news_item['slug'] ?>">View article</a></p>
+        <p><a href="<?= 'news/' . $news_item->slug ?>">View article</a></p>
 
     <?php endforeach; ?>
 
