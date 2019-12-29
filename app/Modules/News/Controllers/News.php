@@ -55,6 +55,13 @@ class News extends Controller
         if (!$this->validate([
             'title' => 'required|min_length[3]|max_length[255]',
             'body'  => 'required'
+        ], [
+            'title' => [
+                'required' => lang('NewsError.TitleMissed')
+            ],
+            'body'  => [
+                'required' => lang('NewsError.BodyMissed')
+            ]
         ])) {
             $data = ['title' => 'Create a news item'];
             return  view('News\Views\create', $data);

@@ -17,9 +17,9 @@
 
 <?php else : ?>
 
-    <h3>No News</h3>
+    <h3><?= lang('News.msgNoNews') ?></h3>
 
-    <p>Unable to find any news for you.</p>
+    <p><?= lang('News.msgNoNewsDetail') ?></p>
 
 <?php endif ?>
 <?= $this->endSection() ?>
