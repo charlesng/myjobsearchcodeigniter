@@ -14,6 +14,10 @@ class Home extends BaseController
 		return view('welcome_message');
 	}
 
-	//--------------------------------------------------------------------
-
+	public function download()
+	{
+		$data = 'Here is some text!';
+		$name = 'mytext.txt';
+		return $this->response->download($name, $data);
+	}
 }
