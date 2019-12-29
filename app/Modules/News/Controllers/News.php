@@ -3,6 +3,8 @@
 namespace News\Controllers;
 
 use App\Controllers\BaseController;
+use App\Helpers\Convertor;
+use News\Entities\News as NewsEntity;
 use News\Repository\CIModelNewsRepository;
 
 class News extends BaseController
@@ -84,11 +86,11 @@ class News extends BaseController
             ];
             return  view('News\Views\create', $data);
         } else {
-            $this->repo->save([
-                'title' => $this->request->getVar('title'),
-                'slug'  => url_title($this->request->getVar('title')),
-                'body'  => $this->request->getVar('body'),
-            ]);
+            $news = new NewsEntity();
+            $news->title = $this->request->getVar('title');
+            $news->slug = url_title($this->request->getVar('title'));
+            $news->body = $this->request->getVar('body');
+            $this->repo->save($news);
             $data = [
                 'title' => 'Created successfully',
                 'locale' => $this->request->getLocale(),

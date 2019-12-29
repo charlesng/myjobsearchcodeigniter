@@ -2,7 +2,9 @@
 
 namespace News\Repository;
 
+use App\Helpers\Convertor;
 use News\Models\NewsModel;
+use News\Entities\News;
 use News\Repository\NewsRepository;
 
 class CIModelNewsRepository implements NewsRepository
@@ -17,8 +19,10 @@ class CIModelNewsRepository implements NewsRepository
         return $model->getNews($slug);
     }
 
-    public function save($data): bool
+    public function save(News $news): bool
     {
+        //convert the object to associate array first
+        $data = Convertor::obj2array($news);
         $model = new NewsModel();
         return $model->save($data);
     }

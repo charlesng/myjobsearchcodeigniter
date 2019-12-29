@@ -2,9 +2,11 @@
 
 namespace News\Repository;
 
+use News\Entities\News;
+
 interface NewsRepository
 {
     public function findAll(): array;
     public function find($slug = false);
-    public function save($data): bool;
+    public function save(News $data): bool;
 }
