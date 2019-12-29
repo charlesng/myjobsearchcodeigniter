@@ -2,10 +2,10 @@
 
 namespace News\Controllers;
 
-use CodeIgniter\Controller;
-use News\Models\NewsModel;
+use App\Controllers\BaseController;
+use News\Repository\CIModelNewsRepository;
 
-class News extends Controller
+class News extends BaseController
 {
     /**
      * In second
@@ -13,14 +13,25 @@ class News extends Controller
      */
     private $cacheTime = 10;
 
+    /**
+     * @var NewsRepository
+     */
+    private $repo;
+
+    public function initController($request, $response, $logger)
+    {
+        // Do Not Edit This Line
+        parent::initController($request, $response, $logger);
+        $this->repo = new CIModelNewsRepository();
+    }
     public function index()
     {
+
         $this->cachePage($this->cacheTime);
         log_message('info', 'News Index page is visited');
-        $model = new NewsModel();
 
         $data = [
-            'news'  => $model->getNews(),
+            'news'  => $this->repo->find(),
             'title' => 'News archive',
             'locale' => $this->request->getLocale(),
             'msgNoNews' => lang('News.msgNoNews'),
@@ -36,9 +47,9 @@ class News extends Controller
             'slug' => $slug,
         ];
         log_message('info', 'News with {slug} is visited', $info);
-        $model = new NewsModel();
 
-        $data['news'] = $model->getNews($slug);
+
+        $data['news'] = $this->repo->find($slug);
 
         if (empty($data['news'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: ' . $slug);
@@ -53,7 +64,6 @@ class News extends Controller
     {
         log_message('info', 'Create New Page is visited');
         helper('form');
-        $model = new NewsModel();
 
         if (!$this->validate([
             'title' => 'required|min_length[3]|max_length[255]',
@@ -74,7 +84,7 @@ class News extends Controller
             ];
             return  view('News\Views\create', $data);
         } else {
-            $model->save([
+            $this->repo->save([
                 'title' => $this->request->getVar('title'),
                 'slug'  => url_title($this->request->getVar('title')),
                 'body'  => $this->request->getVar('body'),
