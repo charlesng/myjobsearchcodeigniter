@@ -4,12 +4,12 @@
 
 <?= \Config\Services::validation()->listErrors(); ?>
 
-<form action="/news/create">
+<form action="<?= '/' . $locale . '/news/create' ?>">
 
-    <label for="title"><?= lang('News.createTitleLabel') ?></label>
+    <label for="title"><?= $createTitleLabel ?></label>
     <input type="input" name="title" /><br />
 
-    <label for="body"><?= lang('News.createTextLabel') ?></label>
+    <label for="body"><?= $createTextLabel ?></label>
     <textarea name="body"></textarea><br />
 
     <input type="submit" name="submit" value="Create news item" />

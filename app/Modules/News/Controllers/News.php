@@ -22,6 +22,9 @@ class News extends Controller
         $data = [
             'news'  => $model->getNews(),
             'title' => 'News archive',
+            'locale' => $this->request->getLocale(),
+            'msgNoNews' => lang('News.msgNoNews'),
+            'msgNoNewsDetail' => lang('News.msgNoNewsDetail')
         ];
         return view('News\Views\overview', $data);
     }
@@ -63,7 +66,12 @@ class News extends Controller
                 'required' => lang('NewsError.BodyMissed')
             ]
         ])) {
-            $data = ['title' => 'Create a news item'];
+            $data = [
+                'title' => 'Create a news item',
+                'locale' => $this->request->getLocale(),
+                'createTitleLabel' => lang('News.createTitleLabel'),
+                'createTextLabel' => lang('News.createTextLabel')
+            ];
             return  view('News\Views\create', $data);
         } else {
             $model->save([
@@ -71,7 +79,13 @@ class News extends Controller
                 'slug'  => url_title($this->request->getVar('title')),
                 'body'  => $this->request->getVar('body'),
             ]);
-            $data = ['title' => 'Created successfully'];
+            $data = [
+                'title' => 'Created successfully',
+                'locale' => $this->request->getLocale(),
+                'createTitleLabel' => lang('News.createTitleLabel'),
+                'createTextLabel' => lang('News.createTextLabel'),
+                'msgNewsCreatedSuccess' => lang('News.msgNewsCreatedSuccess')
+            ];
             return view('News\Views\success', $data);
         }
     }
