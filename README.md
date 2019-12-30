@@ -4,6 +4,10 @@
 
 - Add Default php compose Github action
 
+## Database Migration and Seeding
+
+- Run `php spark migrate` do the migration and `php spark db:seed CoreSeeder` do the seeding
+
 ## What is CodeIgniter?
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible, and secure.
