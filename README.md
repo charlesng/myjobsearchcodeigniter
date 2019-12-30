@@ -8,6 +8,10 @@
 
 - Run `php spark migrate` do the migration and `php spark db:seed CoreSeeder` do the seeding
 
+## Troubleshooting
+
+- If you encounter issue of phpunit using composer, it might be related to this github thread (https://github.com/sebastianbergmann/phpunit/issues/3036)
+
 ## What is CodeIgniter?
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible, and secure.
