@@ -14,7 +14,7 @@
   },
   "scripts": {
     "post-update-cmd": [
-      "@composer dump-autolo,ad"
+      "@composer dump-autoload"
     ],
     "test": [
       "./vendor/bin/phpunit tests --testdox --no-coverage"
