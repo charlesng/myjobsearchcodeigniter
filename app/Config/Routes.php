@@ -76,6 +76,7 @@ $routes->setAutoRoute(true);
 
 $routes->group('{locale}', function ($routes) {
 	$routes->get('', 'Home::index');
+	$routes->get('showme/(:any)', 'Pages::showme/$1');
 });
 
 // $routes->get('(:any)', 'Pages::showme/$1');
